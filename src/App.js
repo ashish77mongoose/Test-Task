@@ -1,25 +1,21 @@
 
-import React from 'react'
-import { HIDE_TOAST } from "@redux/action/actionConstants";
-import { showToast } from "@redux/action"
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import NotFound from "@pages/NotFound/NotFound";
-import Home from "@pages/Home/Home";
-import ProtectedRoutes from "./ProtectedRoutes";
-import Profile from "@pages/profile";
-import UserRoutes from './UserRoutes';
+import ListingPage from "@pages/listingPage";
 import './index.css';
 import { useToast } from "@chakra-ui/react";
 import Navbar from '@components/layout/Navbar';
 import ProductDetail from '@pages/ProductDetail/ProductDetail';
 import Footer from '@components/layout/Footer';
-import Loader from '@components/Loader';
+import { ProductJson } from '@utils/constants'
+import { setAllProduct } from '@redux/action'
 
 function CustomSnackBar({ type, message }) {
   const toast = useToast();
   return toast({
-    title: message,    
+    title: message,
     status: type,
     duration: 6000,
     isClosable: true,
@@ -33,7 +29,9 @@ const Routes = ({ }) => {
   const { type, message, isVisible } = useSelector(
     (state) => state.toastReducer
   );
-
+  useEffect(() => {
+    dispatch(setAllProduct(ProductJson))
+  }, [])
 
   return (
     <>
@@ -41,12 +39,8 @@ const Routes = ({ }) => {
       <Navbar />
 
       <Switch>
-        <Route path={'/'} exact component={Home} />
-        <Route path={'/product-detail'} exact component={ProductDetail} />
-
-        <Route path={"/user"} render={(props) => <UserRoutes {...props} />}
-        />
-        <ProtectedRoutes path={'/profile'} exact component={Profile} />
+        <Route path={'/'} exact component={ListingPage} />
+        <Route path={'/product-detail/:id'} exact component={ProductDetail} />
         <Route path={'/*'} exact component={NotFound} />
       </Switch>
       <Footer />

@@ -10,81 +10,78 @@ import {
 
 } from "swiper";
 import { useState } from "react";
-import { productRelatedImage } from "@utils/constants";
-import { icons } from '@utils/icons';
-
-const SwipperProductImage = () => {
+const SwipperProductImage = ({ productImages,setSelectedImage }) => {
   const [slide, setSlide] = useState(0);
- 
+
   return (
     <div className="">
-   
- 
-  
-  <Swiper
-    breakpoints={{
-      320: {
-        slidesPerView: 1.2,
-        spaceBetween: 20,
-      },
 
-      480: {
-        slidesPerView: 1,
-        spaceBetween: 20,
-      },
 
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      768: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      1024: {
-        slidesPerView: 2.5,
-        spaceBetween: 20,
-      },
-      1200: {
-        slidesPerView: 6,
-        spaceBetween: 20,
-      },
-      1700: {
-        slidesPerView: 6,
-        spaceBetween: 40,
-      },
-    }}
-    spaceBetween={16}
-    loop={false}
-    loopFillGroupWithBlank={true}
-    grabCursor={false}
-    navigation={{
-      nextEl: ".review-swiper-button-next",
-      prevEl: ".review-swiper-button-prev",
-    }}
-    modules={[Pagination, Navigation]}
-    className="px-1"
-    onSlideChange={(swiper) => {
-      // setSlide(swiper.activeIndex);
-    }}
-  >
-     {
-      productRelatedImage.map((item,index)=>(
 
-        <SwiperSlide className="py-1" key={index}>
-          <div onClick={()=>setSlide(index)} className={`w-[82px] h-[82px] relative cursor-pointer  center flex-shrink-0 rounded-md ${slide===index? `gradient-border`:`bg-white`}`}>
-                                        <div className='  bg-gray-2 center rounded-md'>
-                                            <img className='max-h-[75px] max-w-[75px]' src={item.imgpath} alt="" />
+      <Swiper
+        breakpoints={{
+          320: {
+            slidesPerView: 1.2,
+            spaceBetween: 20,
+          },
 
-                                        </div>
+          480: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
 
-                                    </div>
-        </SwiperSlide>
-      ))
-    }
-   
-  </Swiper>
-</div>
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 2.5,
+            spaceBetween: 20,
+          },
+          1200: {
+            slidesPerView: 6,
+            spaceBetween: 20,
+          },
+          1700: {
+            slidesPerView: 6,
+            spaceBetween: 40,
+          },
+        }}
+        spaceBetween={16}
+        loop={false}
+        loopFillGroupWithBlank={true}
+        grabCursor={false}
+        navigation={{
+          nextEl: ".review-swiper-button-next",
+          prevEl: ".review-swiper-button-prev",
+        }}
+        modules={[Pagination, Navigation]}
+        className="px-1"
+        onSlideChange={(swiper) => {
+          // setSlide(swiper.activeIndex);
+        }}
+      >
+        {
+          productImages.map((image, index) => (
+
+            <SwiperSlide className="py-1" key={index} onClick={()=>setSelectedImage(image)}>
+              <div onClick={() => setSlide(index)} className={`w-[82px] h-[82px] relative cursor-pointer  center flex-shrink-0 rounded-md ${slide === index ? `gradient-border` : `bg-white`}`}>
+                <div className='  bg-gray-2 center rounded-md'>
+                  <img className='max-h-[75px] max-w-[75px]' src={image} alt="" />
+
+                </div>
+
+              </div>
+            </SwiperSlide>
+          ))
+        }
+
+      </Swiper>
+    </div>
   );
 };
 

@@ -98,9 +98,7 @@ const SwiperReview = () => {
 
                 </div>
                 <p className="text-gray-text text-center max-w-[386px] text-[20px] mx-auto mt-8">{item.content}</p>
-                <span className="text-gray-3 text-sm text-center w-full block mt-4">{item.clientname}</span>
-               
-
+                <span className="text-gray-3 text-sm text-center w-full block mt-4">{item.clientname}</span>               
               </div>
         </SwiperSlide>
       ))

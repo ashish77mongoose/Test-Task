@@ -14,6 +14,7 @@ import { useToast } from "@chakra-ui/react";
 import Navbar from '@components/layout/Navbar';
 import ProductDetail from '@pages/ProductDetail/ProductDetail';
 import Footer from '@components/layout/Footer';
+import Loader from '@components/Loader';
 
 function CustomSnackBar({ type, message }) {
   const toast = useToast();

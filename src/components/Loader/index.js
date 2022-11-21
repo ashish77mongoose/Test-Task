@@ -1,12 +1,11 @@
-import Backdrop from "@material-ui/core/Backdrop";
-import CircularProgress from "@material-ui/core/CircularProgress";
-
+import {  CircularProgress, Modal, ModalContent, ModalOverlay } from "@chakra-ui/react";
 const Loader = ({ isLoading }) => (
-  <Backdrop
-    sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-    open={isLoading ? isLoading : false}
+  <Modal isOpen={true}
   >
-    <CircularProgress color="inherit" />
-  </Backdrop>
+     <ModalOverlay />
+     <ModalContent className="!bg-transparent m-auto center z-[1000] w-full">
+        <CircularProgress isIndeterminate color='pink.300' />
+    </ModalContent>
+  </Modal>
 );
 export default Loader;

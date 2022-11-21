@@ -50,10 +50,7 @@ const Filter = () => {
                 <div className='name font-medium text-sm'>{item} </div>
             </label>
            ))
-            }
-           
-
-           
+            }                 
          </div>
         </div>
        </div>

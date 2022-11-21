@@ -1,9 +1,6 @@
 
-const dev = {
+const ENV = {
   BASE_URL: "http://localhost:9001",
 };
-
-
-const ENV = dev;
 
 export default ENV;

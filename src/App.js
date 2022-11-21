@@ -1,8 +1,8 @@
 
 import React from 'react'
 import { HIDE_TOAST } from "@redux/action/actionConstants";
-import {showToast} from "@redux/action"
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import { showToast } from "@redux/action"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import NotFound from "@pages/NotFound/NotFound";
 import Home from "@pages/Home/Home";
@@ -15,12 +15,11 @@ import Navbar from '@components/layout/Navbar';
 import ProductDetail from '@pages/ProductDetail/ProductDetail';
 import Footer from '@components/layout/Footer';
 
-function CustomSnackBar( {type,message} ) {
+function CustomSnackBar({ type, message }) {
   const toast = useToast();
   return toast({
-    title: message,
-    // description: "We've created your account for you.",
-    status:type,
+    title: message,    
+    status: type,
     duration: 6000,
     isClosable: true,
   })
@@ -33,29 +32,24 @@ const Routes = ({ }) => {
   const { type, message, isVisible } = useSelector(
     (state) => state.toastReducer
   );
-  
-  const handleClose = () => {
-    dispatch({
-      type: HIDE_TOAST,
-    });
-  };
+
 
   return (
     <>
-    {isVisible&&<CustomSnackBar type={type} message={message}/>}
-    <Navbar/>
-    
-      <Switch>     
-        <Route path={'/'} exact component={Home} />        
-        <Route path={'/product-detail'} exact component={ProductDetail} />        
-       
-        <Route path={"/user"} render={(props) => <UserRoutes {...props}/>}
+      {isVisible && <CustomSnackBar type={type} message={message} />}
+      <Navbar />
+
+      <Switch>
+        <Route path={'/'} exact component={Home} />
+        <Route path={'/product-detail'} exact component={ProductDetail} />
+
+        <Route path={"/user"} render={(props) => <UserRoutes {...props} />}
         />
         <ProtectedRoutes path={'/profile'} exact component={Profile} />
         <Route path={'/*'} exact component={NotFound} />
       </Switch>
-      <Footer/>
-     
+      <Footer />
+
     </>
   );
 }
